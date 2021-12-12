@@ -46,7 +46,11 @@ export default function Navigation() {
           tabBarInactiveTintColor: "gray",
         })}
       >
-        <Tab.Screen name="Startseite" component={forecastSwitch} />
+        <Tab.Screen
+          name="Startseite"
+          component={forecastSwitch}
+          options={{ headerShown: false }}
+        />
         <Tab.Screen name="Einstellungen" component={SettingsScreen} />
         <Tab.Screen name="Info" component={InfoScreen} />
       </Tab.Navigator>

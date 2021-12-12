@@ -18,15 +18,14 @@ export default function MainScreen({ navigation }) {
   const [editable, seteditable] = useState(true);
 
   const _onSubmit = (text) => {
-    console.log();
     setCity(text);
-    text = "";
   };
 
-  const _onSubmitEnds = () => {
-    textInput.clear();
+  const _onSubmitEnds = (city) => {
+    console.log(city);
+    navigation.navigate("ForecastScreen", { city });
+
     seteditable(false);
-    navigation.navigate("ForecastScreen");
   };
 
   const fadeAnim = useRef(new Animated.Value(-(windowWidth * 1.9))).current;
@@ -55,7 +54,7 @@ export default function MainScreen({ navigation }) {
             editable ? "Bitte Standort eingeben" : "Standort eingegeben!"
           }
           onChange={(e) => _onSubmit(e.nativeEvent.text)}
-          onSubmitEditing={_onSubmitEnds}
+          onSubmitEditing={() => _onSubmitEnds(city)}
           editable={editable}
           style={{ fontSize: 26 }}
         />
@@ -66,10 +65,7 @@ export default function MainScreen({ navigation }) {
         </Pressable>
       </View>
       <Text>{`Eingegebner Standort: ${city}`}</Text>
-      <Button
-        title="Enter"
-        onPress={() => navigation.navigate("ForecastScreen")}
-      />
+      <Button title="Enter" onPress={() => _onSubmitEnds(city)} />
       <Animated.View
         useNativeDriver={true}
         style={[
