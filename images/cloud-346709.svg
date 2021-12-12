@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.0//EN'  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1291.4mm" height="827.85mm" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" version="1.0" viewBox="0 0 129719 83158" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+    .fil0 {fill:#00A0E3}
+    .fil1 {fill:#FFED00}
+    .fil3 {fill:url(#a)}
+    .fil2 {fill:url(#d)}
+    .fil4 {fill:url(#e)}
+  </style>
+  <linearGradient id="a" y1="50%" y2="50%">
+   <stop stop-color="#EBECEC" offset="0"/>
+   <stop stop-color="#FEFEFE" offset="1"/>
+  </linearGradient>
+  <linearGradient id="d" x1="20013" x2="63348" y1="38651" y2="38651" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#FFED00" offset="0"/>
+   <stop stop-color="#EDB203" offset="1"/>
+  </linearGradient>
+  <linearGradient id="e" x1="100%" x2="0%" y1="50%" y2="50%" xlink:href="#a">
+  </linearGradient>
+ </defs>
+   <rect class="fil0" width="1.2972e5" height="83158"/>
+    <ellipse class="fil1" cx="41680" cy="38651" rx="23620" ry="22644"/>
+    <ellipse class="fil2" cx="41680" cy="38651" rx="21668" ry="20773"/>
+     <ellipse class="fil3" cx="79834" cy="46814" rx="13267" ry="8752"/>
+     <ellipse class="fil4" cx="79696" cy="46722" rx="10620" ry="7839"/>
+     <ellipse class="fil3" cx="59855" cy="44950" rx="13267" ry="8752"/>
+     <ellipse class="fil4" cx="59717" cy="44858" rx="10620" ry="7839"/>
+     <ellipse class="fil3" cx="67354" cy="42594" rx="13267" ry="5330"/>
+     <ellipse class="fil4" cx="67216" cy="42538" rx="10620" ry="4774"/>
+     <ellipse class="fil3" cx="52337" cy="40320" rx="13267" ry="5330"/>
+     <ellipse class="fil4" cx="51618" cy="40870" rx="10620" ry="4774"/>
+     <ellipse class="fil3" cx="66220" cy="35110" rx="13267" ry="5330"/>
+     <ellipse class="fil4" cx="66082" cy="35054" rx="10620" ry="4774"/>
+     <ellipse class="fil3" cx="66220" cy="35110" rx="13267" ry="5330"/>
+     <ellipse class="fil4" cx="66082" cy="35054" rx="10620" ry="4774"/>
+     <ellipse class="fil3" cx="82095" cy="40213" rx="13267" ry="5330"/>
+     <ellipse class="fil4" cx="81957" cy="40156" rx="10620" ry="4774"/>
+     <ellipse class="fil3" cx="78965" cy="33624" rx="13267" ry="8752"/>
+     <ellipse class="fil4" cx="78827" cy="33532" rx="10620" ry="7839"/>
+     <ellipse class="fil3" cx="93435" cy="42078" rx="13267" ry="8454"/>
+     <ellipse class="fil4" cx="93296" cy="41989" rx="10620" ry="7572"/>
+</svg>
