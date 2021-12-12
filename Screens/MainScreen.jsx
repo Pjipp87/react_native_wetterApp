@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
+  Button,
   View,
   TextInput,
   Pressable,
@@ -12,7 +13,7 @@ import {
 import * as Icon from "@expo/vector-icons";
 import { useRef } from "react";
 
-export default function MainScreen() {
+export default function MainScreen({ navigation }) {
   const [city, setCity] = useState("");
   const [editable, seteditable] = useState(true);
 
@@ -25,6 +26,7 @@ export default function MainScreen() {
   const _onSubmitEnds = () => {
     textInput.clear();
     seteditable(false);
+    navigation.navigate("ForecastScreen");
   };
 
   const fadeAnim = useRef(new Animated.Value(-(windowWidth * 1.9))).current;
@@ -64,6 +66,10 @@ export default function MainScreen() {
         </Pressable>
       </View>
       <Text>{`Eingegebner Standort: ${city}`}</Text>
+      <Button
+        title="Enter"
+        onPress={() => navigation.navigate("ForecastScreen")}
+      />
       <Animated.View
         useNativeDriver={true}
         style={[
