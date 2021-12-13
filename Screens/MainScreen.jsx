@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,41 +9,43 @@ import {
   Image,
   Dimensions,
   Animated,
+  FlatList,
 } from "react-native";
 import * as Icon from "@expo/vector-icons";
 import { useRef } from "react";
+import axios from "axios";
+import Item from "../Components/Item";
 
-// TODO Axios Request oder fetch() request
-// inahlte in einer Flatlist anzeigen---- oder SectionList (Ort und Land)
+// TODO leere inhalte abfangen
+
+const defaultURL =
+  "https://api.weatherapi.com/v1/search.json?key=c26ddf3e1fb2435ebc1121400213110&q=Herzberg";
+const locationUrl =
+  "https://api.weatherapi.com/v1/search.json?key=c26ddf3e1fb2435ebc1121400213110";
 
 export default function MainScreen({ navigation }) {
   const [city, setCity] = useState("");
-  const [editable, seteditable] = useState(true);
+  const [selectedId, setSelectedId] = useState(null);
+  const [cityData, setCityData] = useState();
 
-  const [cityData, setCityData] = useState([]);
-
-  const _onSubmit = (text) => {
+  const _getText = (text) => {
     setCity(text);
   };
 
-  const _onSubmitEnds = (city) => {
-    navigation.navigate("ForecastScreen", { city });
-
-    seteditable(false);
-  };
-  /*
-  const fadeAnim = useRef(new Animated.Value(-(windowWidth * 1.9))).current;
-  const fadeIn = () => {
-    // Will change fadeAnim value to 1 in 5 seconds
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 2000,
-      useNativeDriver: false,
-    }).start();
+  const _sendRequest = () => {
+    if (city !== "") {
+      axios
+        .get(locationUrl, {
+          params: {
+            q: city,
+          },
+        })
+        .then((response) => setCityData(response.data));
+    } else {
+      alert("Bitte Standort eingeben!");
+    }
   };
 
-  fadeIn();
-  */
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 30, fontStyle: "italic" }}>
@@ -55,12 +57,9 @@ export default function MainScreen({ navigation }) {
           ref={(input) => {
             textInput = input;
           }}
-          placeholder={
-            editable ? "Bitte Standort eingeben" : "Standort eingegeben!"
-          }
-          onChange={(e) => _onSubmit(e.nativeEvent.text)}
-          onSubmitEditing={() => _onSubmitEnds(city)}
-          editable={editable}
+          placeholder="Bitte Standort eingeben"
+          onChange={(e) => _getText(e.nativeEvent.text)}
+          onSubmitEditing={() => _sendRequest()}
           style={{ fontSize: 26 }}
         />
         <Pressable
@@ -70,21 +69,25 @@ export default function MainScreen({ navigation }) {
         </Pressable>
       </View>
       <Text>{`Eingegebner Standort: ${city}`}</Text>
-      <Button title="Enter" onPress={() => _onSubmitEnds(city)} />
-      {/*<Animated.View
-        useNativeDriver={true}
-        style={[
-          styles.sunImage,
-          {
-            bottom: fadeAnim,
-          },
-        ]}
-      >
-        <Image
-          style={styles.sunImage}
-          source={require("../images/sun-5277491_640.png")}
-        />
-      </Animated.View>*/}
+      <Button title="Enter" onPress={() => _sendRequest(city)} />
+
+      <FlatList
+        data={cityData}
+        renderItem={({ item }) => (
+          <Item
+            title={item.name}
+            onPress={() =>
+              navigation.navigate("ForecastScreen", {
+                id: item.id,
+                name: item.name,
+              })
+            }
+          />
+        )}
+        keyExtractor={(item) => item.id}
+        refreshing={true}
+        extraData={selectedId}
+      />
     </View>
   );
 }
