@@ -13,21 +13,25 @@ import {
 import * as Icon from "@expo/vector-icons";
 import { useRef } from "react";
 
+// TODO Axios Request oder fetch() request
+// inahlte in einer Flatlist anzeigen---- oder SectionList (Ort und Land)
+
 export default function MainScreen({ navigation }) {
   const [city, setCity] = useState("");
   const [editable, seteditable] = useState(true);
+
+  const [cityData, setCityData] = useState([]);
 
   const _onSubmit = (text) => {
     setCity(text);
   };
 
   const _onSubmitEnds = (city) => {
-    console.log(city);
     navigation.navigate("ForecastScreen", { city });
 
     seteditable(false);
   };
-
+  /*
   const fadeAnim = useRef(new Animated.Value(-(windowWidth * 1.9))).current;
   const fadeIn = () => {
     // Will change fadeAnim value to 1 in 5 seconds
@@ -39,6 +43,7 @@ export default function MainScreen({ navigation }) {
   };
 
   fadeIn();
+  */
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 30, fontStyle: "italic" }}>
@@ -66,7 +71,7 @@ export default function MainScreen({ navigation }) {
       </View>
       <Text>{`Eingegebner Standort: ${city}`}</Text>
       <Button title="Enter" onPress={() => _onSubmitEnds(city)} />
-      <Animated.View
+      {/*<Animated.View
         useNativeDriver={true}
         style={[
           styles.sunImage,
@@ -79,7 +84,7 @@ export default function MainScreen({ navigation }) {
           style={styles.sunImage}
           source={require("../images/sun-5277491_640.png")}
         />
-      </Animated.View>
+      </Animated.View>*/}
     </View>
   );
 }
