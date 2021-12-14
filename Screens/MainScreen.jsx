@@ -61,6 +61,7 @@ export default function MainScreen({ navigation }) {
           onChange={(e) => _getText(e.nativeEvent.text)}
           onSubmitEditing={() => _sendRequest()}
           style={{ fontSize: 26 }}
+          blurOnSubmit={true}
         />
         <Pressable
           onPress={() => alert("Standortsuche noch nicht implementiert!")}
@@ -68,7 +69,6 @@ export default function MainScreen({ navigation }) {
           <Icon.MaterialIcons name="my-location" size={24} color="black" />
         </Pressable>
       </View>
-      <Text>{`Eingegebner Standort: ${city}`}</Text>
       <Button title="Enter" onPress={() => _sendRequest(city)} />
 
       <FlatList
