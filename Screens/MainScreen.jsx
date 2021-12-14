@@ -34,13 +34,17 @@ export default function MainScreen({ navigation }) {
 
   const _sendRequest = () => {
     if (city !== "") {
-      axios
-        .get(locationUrl, {
-          params: {
-            q: city,
-          },
-        })
-        .then((response) => setCityData(response.data));
+      try {
+        axios
+          .get(locationUrl, {
+            params: {
+              q: city,
+            },
+          })
+          .then((response) => setCityData(response.data));
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       alert("Bitte Standort eingeben!");
     }
@@ -59,7 +63,9 @@ export default function MainScreen({ navigation }) {
           }}
           placeholder="Bitte Standort eingeben"
           onChange={(e) => _getText(e.nativeEvent.text)}
-          onSubmitEditing={() => _sendRequest()}
+          onSubmitEditing={() => {
+            _sendRequest();
+          }}
           style={{ fontSize: 26 }}
           blurOnSubmit={true}
         />
@@ -69,7 +75,7 @@ export default function MainScreen({ navigation }) {
           <Icon.MaterialIcons name="my-location" size={24} color="black" />
         </Pressable>
       </View>
-      <Button title="Enter" onPress={() => _sendRequest(city)} />
+      {/*<Button title="Enter" onPress={() => _sendRequest(city)} />*/}
 
       <FlatList
         data={cityData}
