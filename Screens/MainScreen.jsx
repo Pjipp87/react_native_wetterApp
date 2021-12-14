@@ -42,6 +42,8 @@ export default function MainScreen({ navigation }) {
     }
   };
 
+  useEffect(() => {}, []);
+
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 30, fontStyle: "italic" }}>
