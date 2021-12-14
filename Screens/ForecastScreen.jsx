@@ -24,13 +24,8 @@ export default function ForecastScreen({ route }) {
       <Text>{`Wettertext: ${currentweatherData.WeatherText}`}</Text>
       <Text>{`Aktuelle Temperatur: ${currentweatherData.Temperature.Metric.Value} °C`}</Text>
       <Text>{`Aktuelle Temperatur: ${currentweatherData.WeatherIcon} °C`}</Text>
-      <Image
-        style={{
-          width: 50,
-          height: 50,
-        }}
-        source={require("")}
-      />
+
+      <Image style={styles.stretch} source={require("../images/theSun.png")} />
     </View>
   );
 }
