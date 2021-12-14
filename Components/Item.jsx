@@ -2,22 +2,31 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
 export default function Item({ title, onPress }) {
-  const [color, setcolor] = useState({ backgroundColor: "cornflowerblue" });
+  const [changeColor, setChangeColor] = useState({
+    backgroundColor: "cornflowerblue",
+    color: "black",
+  });
 
-  const _onPress = () => {
-    setcolor({ backgroundColor: "darkblue" });
+  const _changeColor = () => {
+    setChangeColor({
+      backgroundColor: "darkblue",
+      color: "white",
+    });
     setTimeout(() => {
-      setcolor({ backgroundColor: "cornflowerblue" });
+      setChangeColor({
+        backgroundColor: "cornflowerblue",
+        color: "black",
+      });
     }, 150);
   };
 
   return (
     <Pressable
-      style={[styles.item, color]}
+      style={[styles.item, changeColor]}
       onPress={onPress}
-      onPressIn={() => _onPress()}
+      onPressIn={() => _changeColor()}
     >
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title, changeColor]}>{title}</Text>
     </Pressable>
   );
 }
@@ -26,7 +35,7 @@ const styles = StyleSheet.create({
   item: {
     justifyContent: "center",
     paddingVertical: 15,
-    paddingHorizontal: 5,
+    paddingHorizontal: 40,
     borderWidth: 1,
     marginVertical: 10,
     elevation: 5,

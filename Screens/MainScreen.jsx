@@ -2,24 +2,16 @@ import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
-  Button,
   View,
   TextInput,
   Pressable,
-  Image,
   Dimensions,
-  Animated,
   FlatList,
 } from "react-native";
 import * as Icon from "@expo/vector-icons";
-import { useRef } from "react";
 import axios from "axios";
 import Item from "../Components/Item";
 
-// TODO leere inhalte abfangen
-
-const defaultURL =
-  "https://api.weatherapi.com/v1/search.json?key=c26ddf3e1fb2435ebc1121400213110&q=Herzberg";
 const locationUrl =
   "https://api.weatherapi.com/v1/search.json?key=c26ddf3e1fb2435ebc1121400213110";
 
@@ -38,7 +30,7 @@ export default function MainScreen({ navigation }) {
         axios
           .get(locationUrl, {
             params: {
-              q: city,
+              q: city + " germany",
             },
           })
           .then((response) => setCityData(response.data));
