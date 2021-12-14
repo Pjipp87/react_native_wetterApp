@@ -29,7 +29,7 @@ export default function ForecastScreen({ route }) {
           width: 50,
           height: 50,
         }}
-        source={require("../WeatherIcons/2.png")}
+        source={require("")}
       />
     </View>
   );
