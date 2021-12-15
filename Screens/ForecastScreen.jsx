@@ -1,37 +1,49 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, ActivityIndicator } from "react-native";
 import WeatherImages from "../Components/WeatherImages";
 
+function Vieport({ name, currentweatherData }) {}
+
 export default function ForecastScreen({ route }) {
-  const { name, id, imageURl } = route.params;
+  const { name } = route.params;
   const [currentweatherData, setcurrentweatherData] = useState([]);
-  const [currentWeatherImage, setcurrentWeatherImage] = useState(null);
+  const [isloading, setIsloading] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(
-        "http://dataservice.accuweather.com/currentconditions/v1/" +
-          id +
-          "?apikey=nFBpVvA2J0kzgHAfCjkbb0BcLXqVlnsF&language=de-de&details=false "
-      )
-      .then((response) => setcurrentweatherData(response.data[0]));
+    try {
+      axios
+        .get(
+          "https://api.weatherapi.com/v1/current.json?key=c26ddf3e1fb2435ebc1121400213110&q=" +
+            name +
+            "&aqi=no&lang=de"
+        )
+        .then((response) => setcurrentweatherData(response.data));
+    } catch (error) {
+      alert("Fehler");
+      console.log(error);
+    }
   }, []);
 
-  return (
-    <View>
-      <Text>{`Vorhersage für ${name}`}</Text>
-      <Text>{`City id: ${id}`}</Text>
-      {/*
-      <Text>{`Aktuelle Temperatur: ${currentweatherData.Temperature.Metric.Value} °C`}</Text>
-      */}
-      <Text>{`Wettertext: ${currentweatherData.WeatherText}`}</Text>
+  if (isloading) {
+    return (
+      <View>
+        <ActivityIndicator color={"blue"} />
+      </View>
+    );
+  } else {
+    return (
+      <View>
+        <Text>{`Vorhersage für ${name}`}</Text>
 
-      <Text>{`Wetter Icon: ${currentweatherData.WeatherIcon} `}</Text>
-      <WeatherImages iconnumber={currentweatherData.WeatherIcon} />
-    </View>
-  );
+        {/*
+  <Text>{`Aktuelle Temperatur: ${currentweatherData.Temperature.Metric.Value} °C`}</Text>
+  */}
+        <Text>Wettertext: {currentweatherData.current.condition.text}</Text>
+      </View>
+    );
+  }
 }
 
 //const windowWidth = Dimensions.get("window").width;

@@ -42,8 +42,6 @@ export default function MainScreen({ navigation }) {
     }
   };
 
-  useEffect(() => {}, []);
-
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 30, fontStyle: "italic" }}>
@@ -78,7 +76,6 @@ export default function MainScreen({ navigation }) {
             title={item.name}
             onPress={() =>
               navigation.navigate("ForecastScreen", {
-                id: item.id,
                 name: item.name,
               })
             }
