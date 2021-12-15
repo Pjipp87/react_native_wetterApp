@@ -50,9 +50,6 @@ export default function MainScreen({ navigation }) {
 
       <View style={styles.locationInput}>
         <TextInput
-          ref={(input) => {
-            textInput = input;
-          }}
           placeholder="Bitte Standort eingeben"
           onChange={(e) => _getText(e.nativeEvent.text)}
           onSubmitEditing={() => {
