@@ -16,14 +16,13 @@ export default function ForecastScreen({ route, navigation }) {
   const { name } = route.params;
   const [weatherData, setweatherData] = useState(null);
   const [isloading, setIsloading] = useState(true);
-  const [hourlyForecastModal, setHourlyForecastModal] = useState(false);
 
   const _fetchWeatherData = async () => {
     try {
       const response = await fetch(
         "https://api.weatherapi.com/v1/forecast.json?key=c26ddf3e1fb2435ebc1121400213110&q=" +
           name +
-          "&days=3&aqi=no&alerts=no&lang=de"
+          "&days=4&aqi=no&alerts=no&lang=de"
       );
       const responseJSON = await response.json();
 
@@ -60,18 +59,17 @@ setModalparams state initieren und implementieren
 
   */
 
-  const _openModal = (weatherData) => {
-    setHourlyForecastModal(true);
-    setmodalParams(weatherData);
-  };
-
   return (
     <View style={styles.container}>
       <FlatList
         data={weatherData}
         renderItem={({ item }) => (
           <CurrentConditions
-            onPress={() => alert("klappt")}
+            onPress={() =>
+              navigation.navigate("HourlyForecast", {
+                weatherData: item.forecast.forecastday[0],
+              })
+            }
             weatherData={item}
           />
         )}
@@ -85,21 +83,9 @@ setModalparams state initieren und implementieren
           <ForecastIcon
             onPress={() =>
               navigation.navigate("HourlyForecast", {
-                weatherData: item.forecast.day[0],
+                weatherData: item.forecast.forecastday[1],
               })
             }
-            weatherData={item.forecast.forecastday[0]}
-          />
-        )}
-        onRefresh={_refresh}
-        refreshing={isloading}
-      />
-
-      <FlatList
-        data={weatherData}
-        renderItem={({ item }) => (
-          <ForecastIcon
-            onPress={() => alert("klappt")}
             weatherData={item.forecast.forecastday[1]}
           />
         )}
@@ -111,7 +97,11 @@ setModalparams state initieren und implementieren
         data={weatherData}
         renderItem={({ item }) => (
           <ForecastIcon
-            onPress={() => alert("klappt")}
+            onPress={() =>
+              navigation.navigate("HourlyForecast", {
+                weatherData: item.forecast.forecastday[2],
+              })
+            }
             weatherData={item.forecast.forecastday[2]}
           />
         )}
