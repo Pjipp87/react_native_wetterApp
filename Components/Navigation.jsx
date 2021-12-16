@@ -8,6 +8,7 @@ import SettingsScreen from "../Screens/SettingsScreen";
 import * as Icon from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ForecastScreen from "../Screens/ForecastScreen";
+import HourlyForecast from "../Screens/HourlyForecast";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ function forecastSwitch() {
     <Stack.Navigator initialRouteName="HomeScreen">
       <Stack.Screen name="HomeScreen" component={MainScreen} />
       <Stack.Screen name="ForecastScreen" component={ForecastScreen} />
+      <Stack.Screen name="HourlyForecast" component={HourlyForecast} />
     </Stack.Navigator>
   );
 }

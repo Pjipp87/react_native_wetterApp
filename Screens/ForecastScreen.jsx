@@ -12,7 +12,7 @@ import {
 import ForecastIcon from "../Components/ForecastIcon";
 import CurrentConditions from "../Components/CurrentConditions";
 
-export default function ForecastScreen({ route }) {
+export default function ForecastScreen({ route, navigation }) {
   const { name } = route.params;
   const [weatherData, setweatherData] = useState(null);
   const [isloading, setIsloading] = useState(true);
@@ -60,33 +60,18 @@ setModalparams state initieren und implementieren
 
   */
 
+  const _openModal = (weatherData) => {
+    setHourlyForecastModal(true);
+    setmodalParams(weatherData);
+  };
+
   return (
     <View style={styles.container}>
-      {/*################################################################################################# */}
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={hourlyForecastModal}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setHourlyForecastModal(!hourlyForecastModal);
-        }}
-      >
-        <View style={styles.container}>
-          <Text>Hallo</Text>
-          <Button
-            title="Close"
-            onPress={() => setHourlyForecastModal(false)}
-          ></Button>
-        </View>
-      </Modal>
-
-      {/*################################################################################################# */}
       <FlatList
         data={weatherData}
         renderItem={({ item }) => (
           <CurrentConditions
-            onPress={() => setHourlyForecastModal(true)}
+            onPress={() => alert("klappt")}
             weatherData={item}
           />
         )}
@@ -98,7 +83,11 @@ setModalparams state initieren und implementieren
         data={weatherData}
         renderItem={({ item }) => (
           <ForecastIcon
-            onPress={() => alert("klappt")}
+            onPress={() =>
+              navigation.navigate("HourlyForecast", {
+                weatherData: item.forecast.day[0],
+              })
+            }
             weatherData={item.forecast.forecastday[0]}
           />
         )}
