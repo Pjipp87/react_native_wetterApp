@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.scarfacehbc.react_native_wetterApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
