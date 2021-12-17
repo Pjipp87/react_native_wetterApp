@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import ForecastIcon from "../Components/ForecastIcon";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
+import HourlyForecastItem from "../Components/HourlyForecastItem";
 
 export default function HourlyForecast({ route }) {
   const { weatherData } = route.params;
@@ -16,25 +17,10 @@ export default function HourlyForecast({ route }) {
         data={weatherData.hour}
         horizontal={true}
         keyExtractor={(item, index) => uuidv4()}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <Text>Uhrzeit {item.time}</Text>
-            <Text>Wetter {item.condition.text}</Text>
-            <Text>Temperatur {item.temp_c} °C</Text>
-          </View>
-        )}
+        renderItem={({ item }) => <HourlyForecastItem hourlyForecast={item} />}
       />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  listItem: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingRight: 30,
-    paddingTop: 50,
-    paddingLeft: 30,
-    paddingBottom: 20,
-  },
-});
+const styles = StyleSheet.create({});
