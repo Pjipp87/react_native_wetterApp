@@ -12,18 +12,18 @@ export default function CurrentConditions({ weatherData, onPress }) {
   return (
     <Pressable onPress={onPress}>
       <View style={styles.container}>
+        <Text style={{ fontSize: 28, paddingVertical: 10 }}>Heute</Text>
         <Image
           style={styles.image}
           source={{ uri: "https:" + weatherData.current.condition.icon }}
         />
-        <View style={styles.info}>
-          <Text
-            style={styles.text}
-          >{`Die Temperatur beträgt ${weatherData.current.temp_c} °C`}</Text>
-          <Text
-            style={styles.smallText}
-          >{`${weatherData.current.condition.text}`}</Text>
-        </View>
+
+        <Text
+          style={styles.text}
+        >{`Die Temperatur beträgt ${weatherData.current.temp_c} °C`}</Text>
+        <Text
+          style={styles.smallText}
+        >{`${weatherData.current.condition.text}`}</Text>
       </View>
     </Pressable>
   );
@@ -32,12 +32,13 @@ export default function CurrentConditions({ weatherData, onPress }) {
 const screenWidth = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: "column",
     borderWidth: 1,
     width: screenWidth * 0.95,
     borderColor: "blue",
     borderRadius: 15,
     elevation: 100,
+    alignItems: "center",
   },
   image: {
     width: 80,
@@ -48,12 +49,15 @@ const styles = StyleSheet.create({
   info: {
     flexDirection: "column",
     justifyContent: "space-evenly",
+    alignItems: "center",
   },
   text: {
-    fontSize: 20,
+    fontSize: 18,
   },
   smallText: {
-    fontSize: 16,
-    fontWeight: "100",
+    fontSize: 20,
+    fontWeight: "bold",
+    fontStyle: "italic",
+    paddingBottom: 10,
   },
 });

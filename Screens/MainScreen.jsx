@@ -19,6 +19,7 @@ export default function MainScreen({ navigation }) {
   const [city, setCity] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const [cityData, setCityData] = useState();
+  const [isloading, setIsloading] = useState(false);
 
   const _getText = (text) => {
     setCity(text);
@@ -26,6 +27,7 @@ export default function MainScreen({ navigation }) {
 
   const _sendRequest = () => {
     if (city !== "") {
+      setIsloading(true);
       try {
         axios
           .get(locationUrl, {
@@ -37,11 +39,24 @@ export default function MainScreen({ navigation }) {
       } catch (error) {
         console.log(error);
       }
+      setIsloading(false);
     } else {
       alert("Bitte Standort eingeben!");
     }
   };
 
+  const _refresh = () => {
+    setIsloading(true);
+    _sendRequest();
+  };
+
+  if (isloading) {
+    return (
+      <View>
+        <ActivityIndicator color={"blue"} />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 30, fontStyle: "italic" }}>
@@ -59,12 +74,13 @@ export default function MainScreen({ navigation }) {
           blurOnSubmit={true}
         />
         <Pressable
-          onPress={() => alert("Standortsuche noch nicht implementiert!")}
+          onPress={() =>
+            alert("Standortsuche über GPS noch nicht implementiert!")
+          }
         >
           <Icon.MaterialIcons name="my-location" size={24} color="black" />
         </Pressable>
       </View>
-      {/*<Button title="Enter" onPress={() => _sendRequest(city)} />*/}
 
       <FlatList
         data={cityData}
@@ -79,7 +95,8 @@ export default function MainScreen({ navigation }) {
           />
         )}
         keyExtractor={(item) => item.id}
-        refreshing={true}
+        onRefresh={_refresh}
+        refreshing={isloading}
         extraData={selectedId}
       />
     </View>

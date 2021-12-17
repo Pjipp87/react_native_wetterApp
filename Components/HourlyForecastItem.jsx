@@ -12,10 +12,10 @@ export default function HourlyForecastItem({ hourlyForecast }) {
         style={styles.image}
         source={{ uri: "https:" + item.condition.icon }}
       />
-      <View>
-        <Text>Uhrzeit {time}</Text>
-        <Text>Wetter {item.condition.text}</Text>
-        <Text>Temperatur {item.temp_c} °C</Text>
+      <View style={{ alignItems: "center" }}>
+        <Text style={styles.text}>Uhrzeit {time}</Text>
+        <Text style={styles.text}>Wetter {item.condition.text}</Text>
+        <Text style={styles.text}>Temperatur {item.temp_c} °C</Text>
       </View>
     </View>
   );
@@ -27,14 +27,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingRight: 30,
-    paddingTop: 50,
     paddingLeft: 30,
     paddingBottom: 20,
+    backgroundColor: "cornflowerblue",
   },
   image: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     borderRadius: 40,
     marginRight: 5,
+  },
+  text: {
+    fontSize: 26,
   },
 });

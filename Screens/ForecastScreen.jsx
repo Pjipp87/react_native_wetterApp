@@ -87,6 +87,7 @@ setModalparams state initieren und implementieren
               })
             }
             weatherData={item.forecast.forecastday[1]}
+            day="Morgen"
           />
         )}
         onRefresh={_refresh}
@@ -103,6 +104,7 @@ setModalparams state initieren und implementieren
               })
             }
             weatherData={item.forecast.forecastday[2]}
+            day="Übermorgen"
           />
         )}
         onRefresh={_refresh}
@@ -118,8 +120,8 @@ const styles = StyleSheet.create({
     width: screenWidth,
     flex: 1,
     alignItems: "center",
-    justifyContent: "flex-start",
-    paddingTop: "10%",
+    paddingTop: 10,
     backgroundColor: "cornflowerblue",
+    justifyContent: "center",
   },
 });

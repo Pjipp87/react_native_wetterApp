@@ -15,9 +15,27 @@ const Stack = createNativeStackNavigator();
 function forecastSwitch() {
   return (
     <Stack.Navigator initialRouteName="HomeScreen">
-      <Stack.Screen name="HomeScreen" component={MainScreen} />
-      <Stack.Screen name="ForecastScreen" component={ForecastScreen} />
-      <Stack.Screen name="HourlyForecast" component={HourlyForecast} />
+      <Stack.Screen
+        name="HomeScreen"
+        options={{
+          title: "Wilkommen",
+        }}
+        component={MainScreen}
+      />
+      <Stack.Screen
+        name="ForecastScreen"
+        options={({ route, navigation }) => ({
+          title: route.params.name,
+        })}
+        component={ForecastScreen}
+      />
+      <Stack.Screen
+        name="HourlyForecast"
+        options={{
+          title: "Stündliche Vorhersage",
+        }}
+        component={HourlyForecast}
+      />
     </Stack.Navigator>
   );
 }

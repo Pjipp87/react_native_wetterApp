@@ -9,9 +9,16 @@ export default function HourlyForecast({ route }) {
   const { weatherData } = route.params;
 
   return (
-    <View style={{ alignItems: "center" }}>
-      <Text style={{ paddingTop: 30, fontSize: 26, fontStyle: "bold" }}>
-        Datum {weatherData.date}{" "}
+    <View style={styles.container}>
+      <Text
+        style={{
+          paddingTop: 30,
+          fontSize: 26,
+          fontWeight: "bold",
+          fontStyle: "italic",
+        }}
+      >
+        {weatherData.date}{" "}
       </Text>
       <FlatList
         data={weatherData.hour}
@@ -23,4 +30,10 @@ export default function HourlyForecast({ route }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "cornflowerblue",
+  },
+});
